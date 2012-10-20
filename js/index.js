@@ -1,7 +1,16 @@
 
 $(function () {
+  var $video, $els;
 
-  var $video = $('#video');
   Vimeetube.init();
+
+  $video    = $('#video');
+  $elements = Vimeetube.getElements();
+
+  $elements.loadBtn.on('click', function (e) {
+    e.preventDefault();
+    Vimeetube.load($elements.url.val());
+  });
+
 
 });
