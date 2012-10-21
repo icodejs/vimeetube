@@ -3,19 +3,46 @@
   <head>
    <meta charset='utf-8'>
     <title>Vimeetube</title>
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <form>
-      <input type="text" class="url text">
-      <button type="submit" class="load btn">Load</button>
+      <input type="text" class="url text" value="https://vimeo.com/49384334">
+      <button type="submit" class="load btn">Load</button>&nbsp;
+      <span class="buttonConatiner" style="display:none;">
+        <button type="submit" class="stop btn">Stop</button>&nbsp;
+        <button type="submit" class="pause btn">Pause</button>&nbsp;
+        <button type="submit" class="toggle btn">Toggle</button>&nbsp;
+        <button type="submit" class="goto btn">Goto</button>&nbsp;
+        <input type="number" class="gotoValue">
+      </span>
+
     </form>
-    <div id="video">
-      Loading ...
-    </div>
+    <br>
+    <div id="video"></div>
+    <br>
+    <span class="buttonConatiner" style="display:none;">
+      <button type="submit" class="currentTime btn">Current Time</button>&nbsp;
+      <button type="submit" class="duration btn">Duration</button>&nbsp;
+      <button type="submit" class="embedCode btn">Embed Code</button>&nbsp;
+      <button type="submit" class="videoUrl btn">Video Url</button>&nbsp;
+      <button type="submit" class="state btn">State</button>&nbsp;
+    </span>
+    <br>
+    <textarea class="debug">
+
+    </textarea>
+    <ul>
+      <li>Youtube: http://www.youtube.com/watch?v=4rPYPzWOr2w&feature=g-vrec</li>
+      <li>Vimeo: https://vimeo.com/49384334</li>
+    </ul>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="js/libs/youtube-api.js"></script>
     <script src="js/libs/vimeo-api.js"></script>
     <script src="js/libs/URI.min.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/player.youtube.js"></script>
+    <script src="js/player.vimeo.js"></script>
     <script src="js/vimeetube.js"></script>
     <script src="js/index.js"></script>
   </body>

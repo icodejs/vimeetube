@@ -1,0 +1,8 @@
+.text {
+  width: 98%;
+}
+.debug {
+  height: 100px;
+  width: 300px;
+  overflow: scroll;
+}
