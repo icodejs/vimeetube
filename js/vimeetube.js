@@ -51,49 +51,16 @@ var Vimeetube = (function (window, document, $, Player, Youtube, Vimeo, undefine
 
 
   function init(url) {
-    Vimeetube.videoType = videoType = getVideoType(url);
-
-    if (!videoType.id.length) {
-      videoType.id = getIdFromUrl(videoType.typeName, url);
-    }
+    Vimeetube.videoType = videoType = new Player().getVideoType(url);
 
     if (videoType.typeName === 'youtube') {
-      Vimeetube.player = player = new Youtube().init(videoType.id, 'video', $, window);
+      Vimeetube.player = player = new Youtube().init(url, 'video', $, window);
     }
     else if (videoType.typeName === 'vimeo') {
-      Vimeetube.player = player = new Vimeo().init(videoType.id, 'video', $, window);
+      Vimeetube.player = player = new Vimeo().init(url, 'video', $, window);
     }
 
     load();
-  }
-
-
-  function getVideoType(input) {
-    var type = '';
-
-    if (input.indexOf('/') === -1 && input.indexOf('?') === -1 && input.indexOf('=') === -1 && input.indexOf('http') === -1 && input.indexOf('https') === -1) {
-      if (isNaN(input)) {
-        type = 'youtube';
-      }
-      else {
-        type = 'vimeo';
-      }
-      return { id : input, typeName : type };
-    }
-
-    if (input.indexOf('youtu') >= 0) {
-      type = 'youtube';
-    }
-    else if (input.indexOf('vimeo') >= 0) {
-      type = 'vimeo';
-    }
-    else {
-      throw {
-        error: 'Unrecognised URL',
-        message: 'Did not recognise this URL. Only Youtbe and Vimeo are supported'
-      };
-    }
-    return { id : '', typeName : type };
   }
 
 
@@ -104,50 +71,6 @@ var Vimeetube = (function (window, document, $, Player, Youtube, Vimeo, undefine
     $('iframe').remove();
     _elements.video = $('<div id="video" />').appendTo('body');
     callback();
-  }
-
-
-  function getIdFromUrl(type, url) {
-    var o;
-
-    if (type === 'youtube') {
-      o = getURIObject(url);
-
-      if (o.host() === 'youtu.be') {
-        return o.path().replace('/', '');
-      }
-      if (o.path() === '/watch') {
-        return o.search(true)['v'];
-      }
-      if (o.directory() === '/embed') {
-        return o.path().split('/')[2];
-      }
-    }
-    else if (type === 'vimeo') {
-      o = getURIObject(url);
-
-      if (o.host() === 'vimeo.com') {
-        return o.path().replace('/', '');
-      }
-      if (o.host() === 'player.vimeo.com') {
-        return o.path().split('/')[2];
-      }
-    }
-  }
-
-
-  function getURIObject(url) {
-    var parsedUri = URI.parse(url), valideUrl;
-
-    if (parsedUri.hostname && parsedUri.path) {
-      if (url.indexOf('http://') === -1 && url.indexOf('https://') === -1)
-        valideUrl = 'http://' + url;
-      valideUrl = url;
-    }
-    else {
-      throw new Error('Unrecognised Youtube or Vimeo URL structure: ' + url);
-    }
-      return new URI(valideUrl);
   }
 
 

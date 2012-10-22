@@ -7,6 +7,67 @@ function Player() {
 }
 
 
+Player.prototype.getVideoType = function (input) {
+  var type = '';
+
+  if (input.indexOf('/') === -1 &&
+      input.indexOf('?') === -1 &&
+      input.indexOf('=') === -1 &&
+      input.indexOf('http') === -1 &&
+      input.indexOf('https') === -1) {
+
+    if (isNaN(input)) {
+      type = 'youtube';
+    }
+    else {
+      type = 'vimeo';
+    }
+    return { id : input, typeName : type };
+  }
+
+  if (input.indexOf('youtu') >= 0) {
+    type = 'youtube';
+  }
+  else if (input.indexOf('vimeo') >= 0) {
+    type = 'vimeo';
+  }
+  else {
+    throw {
+      error: 'Unrecognised URL',
+      message: 'Did not recognise this URL. Only Youtbe and Vimeo are supported'
+    };
+  }
+  return { id : '', typeName : type };
+};
+
+
+Player.prototype.getURIObject = function (url) {
+  var URI = this.URI, parsedUri = URI.parse(url), validUrl;
+
+  if (parsedUri.hostname && parsedUri.path) {
+    if (url.indexOf('http://') === -1 && url.indexOf('https://') === -1)
+      validUrl = 'http://' + url;
+    validUrl = url;
+  }
+  else {
+    throw new Error('Unrecognised Youtube or Vimeo URL structure: ' + url);
+  }
+
+  return new URI(validUrl);
+};
+
+
+Player.prototype.init = function (url, videoContainerId, $, _window) {
+  this.$                = _window.jQuery;
+  this.$vim             = _window.$f;
+  this.YT               = _window.YT;
+  this.URI              = _window.URI;
+  this.id               = this.getId(url);
+  this.videoContainerId = videoContainerId;
+  return this;
+};
+
+
 Player.prototype.getId = function (url) {
   throw Error(errorMessage('getId'));
 };
@@ -19,14 +80,6 @@ Player.prototype.toggle = function (url) {
 
 Player.prototype.load = function () {
   throw Error(errorMessage('load'));
-};
-
-
-Player.prototype.init = function (videoId, videoContainerId, $) {
-  this.id               = videoId;
-  this.$                = $;
-  this.videoContainerId = videoContainerId;
-  return this;
 };
 
 

@@ -9,6 +9,7 @@ Vimeo.prototype.constructor = Vimeo;
 Vimeo.prototype.load = function(callback) {
   var
   $       = this.$,
+  $vim    = this.$vim,
   url     = [],
   src     = '',
   $iframe;
@@ -28,10 +29,28 @@ Vimeo.prototype.load = function(callback) {
 
   $('body').append($iframe);
 
-  this.player = $f($iframe[0]);
+  this.player = $vim($iframe[0]);
   this.player.addEvent('ready', function (player_id) {
     callback();
   });
+};
+
+
+Vimeo.prototype.getId = function (url) {
+  var videoType = this.getVideoType(url), o;
+
+  if (videoType.id.length) {
+    return videoType.id;
+  }
+
+  o = this.getURIObject(url);
+
+  if (o.host() === 'vimeo.com') {
+    return o.path().replace('/', '');
+  }
+  if (o.host() === 'player.vimeo.com') {
+    return o.path().split('/')[2];
+  }
 };
 
 

@@ -8,7 +8,7 @@ Youtube.prototype.constructor = Youtube;
 
 Youtube.prototype.load = function(callback) {
   var self = this;
-  this.player = new window.YT.Player(self.videoContainerId, {
+  self.player = new self.YT.Player(self.videoContainerId, {
     height  : '390',
     width   : '640',
     videoId : self.id,
@@ -25,6 +25,27 @@ Youtube.prototype.load = function(callback) {
       }
     }
   });
+};
+
+
+Youtube.prototype.getId = function (url) {
+  var videoType = this.getVideoType(url), o;
+
+  if (videoType.id.length) {
+    return videoType.id;
+  }
+
+  o = this.getURIObject(url);
+
+  if (o.host() === 'youtu.be') {
+    return o.path().replace('/', '');
+  }
+  if (o.path() === '/watch') {
+    return o.search(true)['v'];
+  }
+  if (o.directory() === '/embed') {
+    return o.path().split('/')[2];
+  }
 };
 
 

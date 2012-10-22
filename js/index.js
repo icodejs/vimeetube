@@ -5,7 +5,6 @@
  * create a player state object that both player have access to that prefines
  * all the states with names and numbers
  *
- *  move getIdFromUrl() method into each players constructor.
  */
 
 (function ($, Vimeetube) {
@@ -50,7 +49,7 @@
       e.preventDefault();
       var gotoVal = $elements.gotoValue.val();
 
-      if (!isNaN(gotoVal)) {
+      if (gotoVal.length && !isNaN(gotoVal)) {
         Vimeetube.player.seekTo(gotoVal);
       }
     });
@@ -65,8 +64,7 @@
     $elements.currentTimeBtn.on('click', function (e) {
       e.preventDefault();
       Vimeetube.player.getCurrentTime(function (value) {
-        var output = $elements.debug.val() + '\n' + value;
-        $elements.debug.val(output);
+        debug(value);
       });
     });
 
@@ -74,8 +72,7 @@
     $elements.durationBtn.on('click', function (e) {
       e.preventDefault();
       Vimeetube.player.getDuration(function (value) {
-        var output = $elements.debug.val() + '\n' + value;
-        $elements.debug.val(output);
+        debug(value);
       });
     });
 
@@ -83,8 +80,7 @@
     $elements.embedCodeBtn.on('click', function (e) {
       e.preventDefault();
       Vimeetube.player.getVideoEmbedCode(function (value) {
-        var output = $elements.debug.val() + '\n' + value;
-        $elements.debug.val(output);
+        debug(value);
       });
     });
 
@@ -92,17 +88,22 @@
     $elements.videoUrlBtn.on('click', function (e) {
       e.preventDefault();
       Vimeetube.player.getVideoUrl(function (value) {
-        var output = $elements.debug.val() + '\n' + value;
-        $elements.debug.val(output);
+        debug(value);
       });
     });
 
 
     $elements.stateBtn.on('click', function (e) {
       e.preventDefault();
-      var output = $elements.debug.val() + '\n' + Vimeetube.player.getPlayerState();
-      $elements.debug.val(output);
+      debug(Vimeetube.player.getPlayerState());
     });
+
+
+    function debug(value) {
+      var output = value + '\n' + '=============' + '\n' + $elements.debug.val();
+      $elements.debug.val(output);
+    }
+
 
   }); // end jQuery
 
