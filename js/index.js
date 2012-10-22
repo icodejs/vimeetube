@@ -30,7 +30,7 @@
         Vimeetube.init(url);
       }
       $elements.buttonConatiner.fadeIn();
-    }); // end load button click
+    });
 
 
     $elements.stopBtn.on('click', function (e) {
