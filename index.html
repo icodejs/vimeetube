@@ -3,49 +3,54 @@
   <head>
    <meta charset='utf-8'>
     <title>Vimeetube</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="bootstrap/css/docs.css" rel="stylesheet">
+    <link href="bootstrap/js/google-code-prettify/prettify.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
   </head>
   <body>
+    <div class="container">
+      <form>
+        <input type="text" class="url text" value="https://vimeo.com/49384334">
+        <button type="submit" class="load btn btn-primary">Load</button>&nbsp;
+        <span class="buttonConatiner" style="display:none;">
+          <button type="submit" class="play btn">Play</button>&nbsp;
+          <button type="submit" class="stop btn">Stop</button>&nbsp;
+          <button type="submit" class="pause btn">Pause</button>&nbsp;
+          <button type="submit" class="toggle btn">Toggle</button>&nbsp;
+          <button type="submit" class="goto btn">Goto</button>&nbsp;
+          <input type="number" class="gotoValue">
+        </span>
+      </form>
 
-    <form>
-      <input type="text" class="url text" value="https://vimeo.com/49384334">
-      <button type="submit" class="load btn">Load</button>&nbsp;
-      <span class="buttonConatiner" style="display:none;">
-        <button type="submit" class="play btn">Play</button>&nbsp;
-        <button type="submit" class="stop btn">Stop</button>&nbsp;
-        <button type="submit" class="pause btn">Pause</button>&nbsp;
-        <button type="submit" class="toggle btn">Toggle</button>&nbsp;
-        <button type="submit" class="goto btn">Goto</button>&nbsp;
-        <input type="number" class="gotoValue">
-      </span>
-    </form>
 
-    <br>
 
-    <div class="videoContainer">
-      <div id="video"></div>
+      <div class="videoContainer">
+        <div id="video"></div>
+      </div>
+
+      <br>
+
+      <form>
+        <span class="buttonConatiner" style="display:none;">
+          <button type="submit" class="currentTime btn">Current Time</button>&nbsp;
+          <button type="submit" class="duration btn">Duration</button>&nbsp;
+          <button type="submit" class="embedCode btn">Embed Code</button>&nbsp;
+          <button type="submit" class="videoUrl btn">Video Url</button>&nbsp;
+          <button type="submit" class="state btn">State</button>&nbsp;
+        </span>
+      </form>
+
+
+
+      <textarea class="debug"></textarea>
+
+      <ul>
+        <li>Youtube: http://www.youtube.com/watch?v=4rPYPzWOr2w&feature=g-vrec</li>
+        <li>Vimeo: https://vimeo.com/49384334</li>
+      </ul>
     </div>
-
-
-    <br>
-
-    <span class="buttonConatiner" style="display:none;">
-      <button type="submit" class="currentTime btn">Current Time</button>&nbsp;
-      <button type="submit" class="duration btn">Duration</button>&nbsp;
-      <button type="submit" class="embedCode btn">Embed Code</button>&nbsp;
-      <button type="submit" class="videoUrl btn">Video Url</button>&nbsp;
-      <button type="submit" class="state btn">State</button>&nbsp;
-    </span>
-
-    <br>
-
-    <textarea class="debug"></textarea>
-
-    <ul>
-      <li>Youtube: http://www.youtube.com/watch?v=4rPYPzWOr2w&feature=g-vrec</li>
-      <li>Vimeo: https://vimeo.com/49384334</li>
-    </ul>
-
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="js/libs/youtube-api.js"></script>
     <script src="js/libs/vimeo-api.js"></script>

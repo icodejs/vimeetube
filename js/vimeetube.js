@@ -23,10 +23,10 @@ var Vimeetube = (function (window, document, $, Player, Youtube, Vimeo, undefine
     Vimeetube.videoType = videoType = new Player().getVideoType(url);
 
     if (videoType.typeName === 'youtube') {
-      Vimeetube.player = player = new Youtube().init(url, 'video', $, window);
+      Vimeetube.player = player = new Youtube().init(url, 'video', window);
     }
     else if (videoType.typeName === 'vimeo') {
-      Vimeetube.player = player = new Vimeo().init(url, 'video', $, window);
+      Vimeetube.player = player = new Vimeo().init(url, 'video', window);
     }
 
     load();

@@ -63,7 +63,7 @@ Player.prototype.getURIObject = function (url) {
 };
 
 
-Player.prototype.init = function (url, videoContainerId, $, _window) {
+Player.prototype.init = function (url, videoContainerId, _window) {
   this.$                = _window.jQuery;
   this.$vim             = _window.$f;
   this.YT               = _window.YT;

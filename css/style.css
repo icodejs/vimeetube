@@ -1,7 +1,14 @@
+body {
+  margin-top: 20px;
+}
 .text, .debug {
   width: 98%;
 }
 .debug {
   height: 100px;
   overflow: scroll;
+}
+.gotoValue {
+  margin: 0 !important;
+  width: 100px;
 }

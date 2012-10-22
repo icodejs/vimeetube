@@ -87,3 +87,9 @@ $('.resetBtn').on('click', function (e) {
 });
 
 ```
+
+## Example Screenshot
+
+Here is a visual example of how I have used this API in index.html.
+
+<img src="https://raw.github.com/icodejs/vimeetube/master/img/demo.png"/>
