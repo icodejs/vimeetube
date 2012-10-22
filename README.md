@@ -24,7 +24,7 @@ Provide a common API for controlling Youtube and Vimeo embedded video players vi
 // initialise Vimeetube
 Vimeetube.init('your url or id');
 
-// example usage
+// example api usage
 $('.stopBtn').on('click', function (e) {
   e.preventDefault();
   Vimeetube.player.stop();
@@ -82,7 +82,7 @@ $('.stateBtn').on('click', function (e) {
 $('.resetBtn').on('click', function (e) {
   e.preventDefault();
   Vimeetube.reset(function () {
-    Vimeetube.init(your url or id'); // setup UI to initial state on page load
+    Vimeetube.init(your url or id); // setup UI to initial state on page load
   });
 });
 
