@@ -11,8 +11,8 @@ Provide a common API for controlling Youtube and Vimeo embedded video players vi
 - Pause
 - Toggle
 - Seek to
-- Get video Current time
+- Get video current time
 - Get video duration
 - Get video embed code
 - Get video URL
-- Get player duration
+- Get player state
