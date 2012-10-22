@@ -5,40 +5,9 @@ var Vimeetube = (function (window, document, $, Player, Youtube, Vimeo, undefine
   var
   alert     = window.alert,
   console   = window.console,
-  _elements = null,
   videoType = '',
   player    = null,
   URI       = window.URI;
-
-
-  function getElements() {
-    if (_elements) {
-      return _elements;
-    }
-    else {
-      _elements = {
-        buttonConatiner : $('.buttonConatiner'),
-        debug           : $('.debug'),
-        currentTimeBtn  : $('.currentTime'),
-        document        : $(document),
-        durationBtn     : $('.duration'),
-        embedCodeBtn    : $('.embedCode'),
-        gotoBtn         : $('.goto'),
-        gotoValue       : $('.gotoValue'),
-        loadBtn         : $('.load'),
-        pauseBtn        : $('.pause'),
-        stateBtn        : $('.state'),
-        stopBtn         : $('.stop'),
-        toggleBtn       : $('.toggle'),
-        url             : $('.url'),
-        video           : $('#video'),
-        videoUrlBtn     : $('.videoUrl'),
-        window          : $(window)
-      };
-      return _elements;
-    }
-  }
-
 
   function load() {
     player.load(function (err) {
@@ -69,15 +38,14 @@ var Vimeetube = (function (window, document, $, Player, Youtube, Vimeo, undefine
     Vimeetube.videoType = videoType = '';
     Vimeetube.player = player = null;
     $('iframe').remove();
-    _elements.video = $('<div id="video" />').appendTo('body');
+    $('<div id="video" />').appendTo('.videoContainer');
     callback();
   }
 
 
+  // public api
   return {
-    getElements : getElements,
     init        : init,
-    load        : load,
     player      : player,
     reset       : reset,
     videoType   : videoType

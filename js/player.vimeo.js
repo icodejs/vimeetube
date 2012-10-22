@@ -27,7 +27,7 @@ Vimeo.prototype.load = function(callback) {
       frameborder : 0
     });
 
-  $('body').append($iframe);
+  $('.videoContainer').html($iframe);
 
   this.player = $vim($iframe[0]);
   this.player.addEvent('ready', function (player_id) {
@@ -56,19 +56,19 @@ Vimeo.prototype.getId = function (url) {
 
 Vimeo.prototype.play = function () {
   this.player.api('play');
-  this.state = 1;
+  this.state = this.states.play;
 };
 
 
 Vimeo.prototype.stop = function () {
   this.player.api('unload');
-  this.state = 0;
+  this.state = this.states.stop;
 };
 
 
 Vimeo.prototype.pause = function () {
   this.player.api('pause');
-  this.state = 2;
+  this.state = this.states.pause;
 };
 
 
@@ -78,7 +78,7 @@ Vimeo.prototype.seekTo = function (seekVal) {
 
 
 Vimeo.prototype.toggle = function () {
-  if (this.state === 1) {
+  if (this.state === this.states.play) {
     this.pause();
   } else {
     this.play();

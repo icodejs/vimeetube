@@ -1,19 +1,23 @@
 
 /**
- * Swap out any jq for vanilla js, get el by id / query selector all etc
+ * Provide a common API for controlling Youtube and Vimeo embedded video players via JavaScript.
+ * https://github.com/icodejs/vimeetube
  *
- * create a player state object that both player have access to that prefines
- * all the states with names and numbers
- *
+ * @version 1.0
+ * @copyright Copyright (C) 2012 Jay Esco. All rights reserved.
+ * @license MIT License
  */
 
+
 (function ($, Vimeetube) {
+  // At some point, swap out jQuery for vanilla JS.
+
   var $elements;
 
   $(function () {
     'use strict';
 
-    $elements = Vimeetube.getElements();
+    $elements = getElements();
 
 
     $elements.loadBtn.on('click', function (e) {
@@ -36,6 +40,12 @@
     $elements.stopBtn.on('click', function (e) {
       e.preventDefault();
       Vimeetube.player.stop();
+    });
+
+
+    $elements.playBtn.on('click', function (e) {
+      e.preventDefault();
+      Vimeetube.player.play();
     });
 
 
@@ -104,6 +114,29 @@
       $elements.debug.val(output);
     }
 
+
+    function getElements() {
+      return {
+        buttonConatiner : $('.buttonConatiner'),
+        debug           : $('.debug'),
+        currentTimeBtn  : $('.currentTime'),
+        document        : $(document),
+        durationBtn     : $('.duration'),
+        embedCodeBtn    : $('.embedCode'),
+        gotoBtn         : $('.goto'),
+        gotoValue       : $('.gotoValue'),
+        loadBtn         : $('.load'),
+        pauseBtn        : $('.pause'),
+        playBtn         : $('.play'),
+        stateBtn        : $('.state'),
+        stopBtn         : $('.stop'),
+        toggleBtn       : $('.toggle'),
+        url             : $('.url'),
+        video           : $('#video'),
+        videoUrlBtn     : $('.videoUrl'),
+        window          : $(window)
+      };
+    }
 
   }); // end jQuery
 

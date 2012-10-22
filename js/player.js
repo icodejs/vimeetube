@@ -1,8 +1,14 @@
 
 function Player() {
-  this.loaded = false;
-  this.player = null;
-  this.state  = -1;
+  this.loaded  = false;
+  this.player  = null;
+  this.states  = {
+    init  : -1,
+    stop  : 0,
+    play  : 1,
+    pause : 2
+  };
+  this.state = this.states.init;
   return this;
 }
 

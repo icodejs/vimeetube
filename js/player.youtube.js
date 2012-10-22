@@ -14,7 +14,7 @@ Youtube.prototype.load = function(callback) {
     videoId : self.id,
     events  : {
       onStateChange : function (event) {
-        self.state = event.data;
+        self.setPlayerState(event.data);
       },
       onError : function (error) {
         callback(error);
@@ -124,4 +124,16 @@ Youtube.prototype.getVideoUrl = function (callback) {
 
 Youtube.prototype.getPlayerState = function () {
   return this.state;
+};
+
+
+Youtube.prototype.setPlayerState = function (value) {
+  for (var key in this.states) {
+     if (this.states.hasOwnProperty(key)) {
+       var state = this.states[key];
+       if (state === value) {
+         this.state = state;
+       }
+     }
+  }
 };
