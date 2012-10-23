@@ -96,4 +96,4 @@ Here is a visual example of how I have used this API in index.html.
 
 ***
 
-<img src="https://raw.github.com/icodejs/vimeetube/master/img/screensho2.png"/>
+<img src="https://raw.github.com/icodejs/vimeetube/master/img/screenshot2.png"/>
