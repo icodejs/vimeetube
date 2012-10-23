@@ -2,16 +2,17 @@
 var Vimeetube = (function (window, document, $, Player, Youtube, Vimeo, undefined) {
   'use strict';
 
-  var videoType = '', player    = null;
+  var videoType = '', player = null;
 
 
   function load() {
-    player.load(function (err) {
-      if (err) {
-        throw err;
-      }
-      player.play();
-    });
+    if (player) {
+      player.load(function (err) {
+        if (err)
+          throw err;
+        player.play();
+      });
+    }
   }
 
 
@@ -30,7 +31,6 @@ var Vimeetube = (function (window, document, $, Player, Youtube, Vimeo, undefine
 
 
   function reset(callback) {
-    // set the page back to original state
     Vimeetube.videoType = videoType = '';
     Vimeetube.player = player = null;
     $('iframe').remove();

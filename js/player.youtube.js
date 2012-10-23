@@ -8,10 +8,11 @@ Youtube.prototype.constructor = Youtube;
 
 Youtube.prototype.load = function(callback) {
   var self = this;
+
   self.player = new self.YT.Player(self.videoContainerId, {
-    height  : '390',
-    width   : '640',
     videoId : self.id,
+    width   : self.dims.width,
+    height  : self.dims.height,
     events  : {
       onStateChange : function (event) {
         self.setPlayerState(event.data);
@@ -29,22 +30,22 @@ Youtube.prototype.load = function(callback) {
 
 
 Youtube.prototype.getId = function (url) {
-  var videoType = this.getVideoType(url), o;
+  var videoType = this.getVideoType(url), uri;
 
   if (videoType.id.length) {
     return videoType.id;
   }
 
-  o = this.getURIObject(url);
+  uri = this.getURIObject(url);
 
-  if (o.host() === 'youtu.be') {
-    return o.path().replace('/', '');
+  if (uri.host() === 'youtu.be') {
+    return uri.path().replace('/', '');
   }
-  if (o.path() === '/watch') {
-    return o.search(true)['v'];
+  if (uri.path() === '/watch') {
+    return uri.search(true)['v'];
   }
-  if (o.directory() === '/embed') {
-    return o.path().split('/')[2];
+  if (uri.directory() === '/embed') {
+    return uri.path().split('/')[2];
   }
 };
 

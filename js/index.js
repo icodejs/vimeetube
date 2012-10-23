@@ -34,6 +34,7 @@
         Vimeetube.init(url);
       }
       $elements.buttonConatiner.fadeIn();
+      $elements.debug.fadeIn();
     });
 
 

@@ -8,6 +8,10 @@ function Player() {
     play  : 1,
     pause : 2
   };
+  this.dims = {
+    width  : '640',
+    height : '390'
+  };
   this.state = this.states.init;
   return this;
 }
@@ -64,7 +68,7 @@ Player.prototype.getURIObject = function (url) {
 
 Player.prototype.init = function (url, videoContainerId, _window) {
   this.$                = _window.jQuery;
-  this.$vim             = _window.$f;
+  this.$vimeo           = _window.$f;
   this.YT               = _window.YT;
   this.URI              = _window.URI;
   this.id               = this.getId(url);

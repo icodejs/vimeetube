@@ -8,10 +8,9 @@ Vimeo.prototype.constructor = Vimeo;
 
 Vimeo.prototype.load = function(callback) {
   var
-  $       = this.$,
-  $vim    = this.$vim,
-  url     = [],
-  src     = '',
+  $      = this.$,
+  $vimeo = this.$vimeo,
+  url    = [],
   $iframe;
 
   url.push('http://player.vimeo.com/video/' + this.id);
@@ -22,14 +21,14 @@ Vimeo.prototype.load = function(callback) {
     .attr({
       id          : this.videoContainerId,
       src         : url.join(''),
-      height      : '390',
-      width       : '640',
+      width       : this.dims.width,
+      height      : this.dims.height,
       frameborder : 0
     });
 
   $('.videoContainer').html($iframe);
 
-  this.player = $vim($iframe[0]);
+  this.player = $vimeo($iframe[0]);
   this.player.addEvent('ready', function (player_id) {
     callback();
   });
@@ -37,19 +36,19 @@ Vimeo.prototype.load = function(callback) {
 
 
 Vimeo.prototype.getId = function (url) {
-  var videoType = this.getVideoType(url), o;
+  var videoType = this.getVideoType(url), uri;
 
   if (videoType.id.length) {
     return videoType.id;
   }
 
-  o = this.getURIObject(url);
+  uri = this.getURIObject(url);
 
-  if (o.host() === 'vimeo.com') {
-    return o.path().replace('/', '');
+  if (uri.host() === 'vimeo.com') {
+    return uri.path().replace('/', '');
   }
-  if (o.host() === 'player.vimeo.com') {
-    return o.path().split('/')[2];
+  if (uri.host() === 'player.vimeo.com') {
+    return uri.path().split('/')[2];
   }
 };
 
