@@ -58,7 +58,6 @@ Player.prototype.getURIObject = function (url) {
   else {
     throw new Error('Unrecognised Youtube or Vimeo URL structure: ' + url);
   }
-
   return new URI(validUrl);
 };
 

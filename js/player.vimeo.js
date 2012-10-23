@@ -78,11 +78,10 @@ Vimeo.prototype.seekTo = function (seekVal) {
 
 
 Vimeo.prototype.toggle = function () {
-  if (this.state === this.states.play) {
+  if (this.state === this.states.play)
     this.pause();
-  } else {
+  else
     this.play();
-  }
 };
 
 

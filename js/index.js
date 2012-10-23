@@ -74,7 +74,7 @@
     $elements.currentTimeBtn.on('click', function (e) {
       e.preventDefault();
       Vimeetube.player.getCurrentTime(function (value) {
-        debug(value);
+        debug('current time: ' + value);
       });
     });
 
@@ -82,7 +82,7 @@
     $elements.durationBtn.on('click', function (e) {
       e.preventDefault();
       Vimeetube.player.getDuration(function (value) {
-        debug(value);
+        debug('duration: ' + value);
       });
     });
 
@@ -90,7 +90,7 @@
     $elements.embedCodeBtn.on('click', function (e) {
       e.preventDefault();
       Vimeetube.player.getVideoEmbedCode(function (value) {
-        debug(value);
+        debug('embed: ' + value);
       });
     });
 
@@ -98,14 +98,14 @@
     $elements.videoUrlBtn.on('click', function (e) {
       e.preventDefault();
       Vimeetube.player.getVideoUrl(function (value) {
-        debug(value);
+        debug('url: ' + value);
       });
     });
 
 
     $elements.stateBtn.on('click', function (e) {
       e.preventDefault();
-      debug(Vimeetube.player.getPlayerState());
+      debug('state: ' + Vimeetube.player.getPlayerState());
     });
 
 

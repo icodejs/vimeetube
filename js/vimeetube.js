@@ -2,12 +2,8 @@
 var Vimeetube = (function (window, document, $, Player, Youtube, Vimeo, undefined) {
   'use strict';
 
-  var
-  alert     = window.alert,
-  console   = window.console,
-  videoType = '',
-  player    = null,
-  URI       = window.URI;
+  var videoType = '', player    = null;
+
 
   function load() {
     player.load(function (err) {

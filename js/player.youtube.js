@@ -50,39 +50,34 @@ Youtube.prototype.getId = function (url) {
 
 
 Youtube.prototype.play = function () {
-  if (this.player && this.player.playVideo) {
+  if (this.player && this.player.playVideo)
     this.player.playVideo();
-  }
 };
 
 
 Youtube.prototype.stop = function () {
-  if (this.player && this.player.stopVideo) {
+  if (this.player && this.player.stopVideo)
     this.player.stopVideo();
-  }
 };
 
 
 Youtube.prototype.pause = function () {
-  if (this.player && this.player.pauseVideo) {
+  if (this.player && this.player.pauseVideo)
     this.player.pauseVideo();
-  }
 };
 
 
 Youtube.prototype.seekTo = function (seekVal) {
-  if (this.player && this.player.seekTo) {
+  if (this.player && this.player.seekTo)
     this.player.seekTo(seekVal, true);
-  }
 };
 
 
 Youtube.prototype.toggle = function () {
-  if (this.state === 1) {
+  if (this.state === 1)
     this.pause();
-  } else {
+  else
     this.play();
-  }
 };
 
 
